@@ -1,0 +1,315 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "outputSeed",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint96",
+						"name": "payment",
+						"type": "uint96"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"name": "RandomWordsFulfilled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "keyHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "preSeed",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint64",
+						"name": "subId",
+						"type": "uint64"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint16",
+						"name": "minimumRequestConfirmations",
+						"type": "uint16"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint32",
+						"name": "callbackGasLimit",
+						"type": "uint32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint32",
+						"name": "numWords",
+						"type": "uint32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RandomWordsRequested",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "seed",
+						"type": "uint256"
+					}
+				],
+				"name": "autoFulfillRandomWords",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "randomWords",
+						"type": "uint256[]"
+					}
+				],
+				"name": "fulfillRandomWords",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "fulfillWithLotteryWin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "rarityType",
+						"type": "string"
+					}
+				],
+				"name": "fulfillWithRarity",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCurrentRequestId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "getRequestConsumer",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "isRequestFulfilled",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "keyHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint64",
+						"name": "subId",
+						"type": "uint64"
+					},
+					{
+						"internalType": "uint16",
+						"name": "minimumRequestConfirmations",
+						"type": "uint16"
+					},
+					{
+						"internalType": "uint32",
+						"name": "callbackGasLimit",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "numWords",
+						"type": "uint32"
+					}
+				],
+				"name": "requestRandomWords",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Mock del Chainlink VRF Coordinator for Remix testingSimulate VRF (waiting for Chainlink)",
+			"kind": "dev",
+			"methods": {
+				"autoFulfillRandomWords(uint256,uint256)": {
+					"details": "Automatically generate random numbers for test rapidi",
+					"params": {
+						"requestId": "ID from request",
+						"seed": "Seed "
+					}
+				},
+				"fulfillRandomWords(uint256,uint256[])": {
+					"details": "Manually simulate callback VRF",
+					"params": {
+						"randomWords": "Array of random numbers (manually for testing)",
+						"requestId": "ID of fulfilling request"
+					}
+				},
+				"fulfillWithLotteryWin(uint256)": {
+					"details": "Force lottery winner for testing"
+				},
+				"fulfillWithRarity(uint256,string)": {
+					"details": "Simulate different rarity outcomes for testing"
+				},
+				"requestRandomWords(bytes32,uint64,uint16,uint32,uint32)": {
+					"details": "Simulate requestRandomWords from Chainlink VRF"
+				}
+			},
+			"title": "MockVRFCoordinator",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/DemetraShoeNFT.sol": "MockVRFCoordinator"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/DemetraShoeNFT.sol": {
+			"keccak256": "0xd6a2e3836373b6024e2dec10adedf76d8e42f81ab8734764152affaa326315ad",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9d1c8d8d024ba1abbc451eecdc69969d60a54bdf8a524b4d1849553f5864c5c6",
+				"dweb:/ipfs/QmWqaPok1z35pMFXuSVqRoBsuCCsdk8SCSukua1gmgEYSq"
+			]
+		}
+	},
+	"version": 1
+}

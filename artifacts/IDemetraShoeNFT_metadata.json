@@ -1,0 +1,445 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "winner",
+						"type": "address"
+					}
+				],
+				"name": "LotteryWinner",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newPoints",
+						"type": "uint256"
+					}
+				],
+				"name": "LoyaltyPointsUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "enum IDemetraShoeNFT.RarityLevel",
+						"name": "rarity",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "isLotteryWinner",
+						"type": "bool"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "rarityScore",
+						"type": "uint256"
+					}
+				],
+				"name": "MetadataRevealed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "NFTMinted",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "getCollectionStats",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "totalMinted",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "remainingSupply",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "lotteryWinners",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "currentPrice",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getLoyaltyPoints",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "getOwnerTokensWithMetadata",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "tokenIds",
+						"type": "uint256[]"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "shoeName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "materialOrigin",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "craftmanship",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "designHistory",
+								"type": "string"
+							},
+							{
+								"internalType": "enum IDemetraShoeNFT.RarityLevel",
+								"name": "rarity",
+								"type": "uint8"
+							},
+							{
+								"internalType": "bool",
+								"name": "isLotteryWinner",
+								"type": "bool"
+							},
+							{
+								"internalType": "uint256",
+								"name": "creationTimestamp",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "rarityScore",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct IDemetraShoeNFT.ShoeMetadata[]",
+						"name": "metadata",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "getTokenMetadata",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "shoeName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "materialOrigin",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "craftmanship",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "designHistory",
+								"type": "string"
+							},
+							{
+								"internalType": "enum IDemetraShoeNFT.RarityLevel",
+								"name": "rarity",
+								"type": "uint8"
+							},
+							{
+								"internalType": "bool",
+								"name": "isLotteryWinner",
+								"type": "bool"
+							},
+							{
+								"internalType": "uint256",
+								"name": "creationTimestamp",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "rarityScore",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct IDemetraShoeNFT.ShoeMetadata",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getUserDiscount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "quantity",
+						"type": "uint256"
+					}
+				],
+				"name": "mint",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quantity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum IDemetraShoeNFT.RarityLevel",
+						"name": "rarity",
+						"type": "uint8"
+					}
+				],
+				"name": "ownerMint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "pause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "newPrice",
+						"type": "uint256"
+					}
+				],
+				"name": "setMintPrice",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum IDemetraShoeNFT.RarityLevel",
+						"name": "rarity",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "discount",
+						"type": "uint256"
+					}
+				],
+				"name": "setRarityDiscount",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "unpause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Interfaccia pubblica per il contratto DemetraShoeNFT",
+			"kind": "dev",
+			"methods": {
+				"getCollectionStats()": {
+					"details": "Statistiche collezione"
+				},
+				"getLoyaltyPoints(address)": {
+					"details": "Ottieni punti fedeltà"
+				},
+				"getOwnerTokensWithMetadata(address)": {
+					"details": "Ottieni token e metadati del proprietario"
+				},
+				"getTokenMetadata(uint256)": {
+					"details": "Ottieni metadati token"
+				},
+				"getUserDiscount(address)": {
+					"details": "Ottieni sconto utente"
+				},
+				"mint(uint256)": {
+					"details": "Mint NFT pubblico"
+				},
+				"ownerMint(address,uint256,uint8)": {
+					"details": "Mint riservato al proprietario"
+				}
+			},
+			"title": "IDemetraShoeNFT",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/IDemetraShoeNFT.sol": "IDemetraShoeNFT"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/IDemetraShoeNFT.sol": {
+			"keccak256": "0x51bead4b40a63da9e6b7486d4e372a0756a8523f24cf5588713b867026f73fa1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://99df226f9b52e82ab62c1bcbe8c36e35cc5b97294e0fff27e76342f3251d056f",
+				"dweb:/ipfs/QmXEHmTHhkEns61wVCGbrLUngCgeAEnFJk4fGf9ko4gsT3"
+			]
+		}
+	},
+	"version": 1
+}
