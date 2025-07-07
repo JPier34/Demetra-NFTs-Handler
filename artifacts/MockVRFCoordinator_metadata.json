@@ -250,31 +250,31 @@
 			}
 		],
 		"devdoc": {
-			"details": "Mock del Chainlink VRF Coordinator for Remix testingSimulate VRF (waiting for Chainlink)",
+			"details": "Mock del Chainlink VRF Coordinator per testing in RemixSimula il comportamento del VRF senza dover aspettare Chainlink",
 			"kind": "dev",
 			"methods": {
 				"autoFulfillRandomWords(uint256,uint256)": {
-					"details": "Automatically generate random numbers for test rapidi",
+					"details": "Genera automaticamente numeri casuali per test rapidi",
 					"params": {
-						"requestId": "ID from request",
-						"seed": "Seed "
+						"requestId": "ID della richiesta",
+						"seed": "Seed per generazione pseudo-casuale"
 					}
 				},
 				"fulfillRandomWords(uint256,uint256[])": {
-					"details": "Manually simulate callback VRF",
+					"details": "Simula manualmente il callback VRF",
 					"params": {
-						"randomWords": "Array of random numbers (manually for testing)",
-						"requestId": "ID of fulfilling request"
+						"randomWords": "Array di numeri casuali (forniti manualmente per test)",
+						"requestId": "ID della richiesta da fulfillare"
 					}
 				},
 				"fulfillWithLotteryWin(uint256)": {
-					"details": "Force lottery winner for testing"
+					"details": "Forza lottery winner per testing"
 				},
 				"fulfillWithRarity(uint256,string)": {
-					"details": "Simulate different rarity outcomes for testing"
+					"details": "Simula different rarity outcomes per testing"
 				},
 				"requestRandomWords(bytes32,uint64,uint16,uint32,uint32)": {
-					"details": "Simulate requestRandomWords from Chainlink VRF"
+					"details": "Simula requestRandomWords di Chainlink VRF"
 				}
 			},
 			"title": "MockVRFCoordinator",
@@ -288,9 +288,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/DemetraShoeNFT.sol": "MockVRFCoordinator"
+			"mocks/MockVRFCoordinator.sol": "MockVRFCoordinator"
 		},
-		"evmVersion": "london",
+		"evmVersion": "prague",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -302,12 +302,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/DemetraShoeNFT.sol": {
-			"keccak256": "0xd6a2e3836373b6024e2dec10adedf76d8e42f81ab8734764152affaa326315ad",
+		"mocks/MockVRFCoordinator.sol": {
+			"keccak256": "0x1773aac432fc87589794fb96285025d89beabbd071da5e85bad96576b5259c3b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9d1c8d8d024ba1abbc451eecdc69969d60a54bdf8a524b4d1849553f5864c5c6",
-				"dweb:/ipfs/QmWqaPok1z35pMFXuSVqRoBsuCCsdk8SCSukua1gmgEYSq"
+				"bzz-raw://58243019fcbdd8bc4ca23fe153f32eb538bf052459a85f77c00c0c7010d66aae",
+				"dweb:/ipfs/QmVWeGFUbunA2E1bhvmhBkL3V6tjDmAh3Aymu4gjaRQ2CG"
 			]
 		}
 	},

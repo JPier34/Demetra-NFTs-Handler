@@ -1,0 +1,47 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "Libreria per gestire i metadati delle scarpe DemetraContiene logica per generazione automatica di nomi, materiali, e descrizioni",
+			"kind": "dev",
+			"methods": {},
+			"title": "ShoeMetadata",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/libraries/ShoeMetadata.sol": "ShoeMetadata"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/libraries/ShoeMetadata.sol": {
+			"keccak256": "0xaae691253ba788f094360f075b9f213e1a38eeacd688c4983fb357f593112d95",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2a9251eecbf7bf9fa335254c0b062d9e37887198a066b3d3ce64b006f531d9fe",
+				"dweb:/ipfs/QmfQV8JL3sN8X8ovCKmaoM6LpdYbkE7arrmJLurP7duFcd"
+			]
+		}
+	},
+	"version": 1
+}

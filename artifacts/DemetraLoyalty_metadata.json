@@ -1,0 +1,609 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_nftContract",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newPoints",
+						"type": "uint256"
+					}
+				],
+				"name": "LoyaltyPointsUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newMaxDiscount",
+						"type": "uint256"
+					}
+				],
+				"name": "MaxDiscountUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "enum ShoeMetadata.RarityLevel",
+						"name": "rarity",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "discount",
+						"type": "uint256"
+					}
+				],
+				"name": "RarityDiscountUpdated",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "points",
+						"type": "uint256"
+					}
+				],
+				"name": "addBonusPoints",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "points",
+						"type": "uint256"
+					}
+				],
+				"name": "addLoyaltyPoints",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum ShoeMetadata.RarityLevel",
+						"name": "rarity",
+						"type": "uint8"
+					}
+				],
+				"name": "getDiscountByRarity",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getLoyaltyPoints",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "getOwnerTokensWithMetadata",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "tokenIds",
+						"type": "uint256[]"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "shoeName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "materialOrigin",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "craftmanship",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "designHistory",
+								"type": "string"
+							},
+							{
+								"internalType": "enum ShoeMetadata.RarityLevel",
+								"name": "rarity",
+								"type": "uint8"
+							},
+							{
+								"internalType": "bool",
+								"name": "isLotteryWinner",
+								"type": "bool"
+							},
+							{
+								"internalType": "uint256",
+								"name": "creationTimestamp",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "rarityScore",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct ShoeMetadata.ShoeData[]",
+						"name": "metadata",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getUserDiscount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getUserStats",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "totalNFTs",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalLoyaltyPoints",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalDiscount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "hasLotteryWin",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "rarityBreakdown",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "isLotteryWinner",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "hasWinningNFT",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "winningTokens",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "loyaltyPoints",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "maxDiscount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "nftContract",
+				"outputs": [
+					{
+						"internalType": "contract IDemetraShoeNFT",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum ShoeMetadata.RarityLevel",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"name": "rarityDiscounts",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "resetUserPoints",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_maxDiscount",
+						"type": "uint256"
+					}
+				],
+				"name": "setMaxDiscount",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_nftContract",
+						"type": "address"
+					}
+				],
+				"name": "setNFTContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum ShoeMetadata.RarityLevel",
+						"name": "rarity",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "discount",
+						"type": "uint256"
+					}
+				],
+				"name": "setRarityDiscount",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Gestisce punti fedeltà e calcolo sconti per i possessori di NFT Demetra",
+			"errors": {
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"addBonusPoints(address,uint256)": {
+					"details": "Aggiungi punti manualmente (per eventi speciali)"
+				},
+				"addLoyaltyPoints(address,uint256)": {
+					"details": "Aggiunge punti fedeltà (solo NFT contract)"
+				},
+				"getDiscountByRarity(uint8)": {
+					"details": "Calcola sconto basato su rarità specifica"
+				},
+				"getLoyaltyPoints(address)": {
+					"details": "Ottieni punti fedeltà di un utente"
+				},
+				"getOwnerTokensWithMetadata(address)": {
+					"details": "Ottieni tutti i token di un proprietario con metadati"
+				},
+				"getUserDiscount(address)": {
+					"details": "Calcola sconto totale per un utente basato sui suoi NFT"
+				},
+				"getUserStats(address)": {
+					"details": "Ottieni statistiche utente complete"
+				},
+				"isLotteryWinner(address)": {
+					"details": "Verifica se utente è vincitore lottery"
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"resetUserPoints(address)": {
+					"details": "Reset punti utente (solo admin)"
+				},
+				"setMaxDiscount(uint256)": {
+					"details": "Imposta sconto massimo"
+				},
+				"setNFTContract(address)": {
+					"details": "Aggiorna indirizzo contratto NFT"
+				},
+				"setRarityDiscount(uint8,uint256)": {
+					"details": "Imposta sconto per rarità"
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				}
+			},
+			"title": "DemetraLoyalty - Sistema Fedeltà e Sconti",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/DemetraLoyalty.sol": "DemetraLoyalty"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
+				"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"contracts/DemetraLoyalty.sol": {
+			"keccak256": "0xb269f70e8a742ab07c0cc391301c9b4866586cd467ada03c3236f854e1c5e9cf",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://faa4694777ffdda7e50ffb0b9360012c9d670c097974a9270a7abf96172e8bb7",
+				"dweb:/ipfs/QmTdGo4A2WFGDVKxuvhi34vFipgwMFruxbTvoCDy1y4Lmx"
+			]
+		},
+		"contracts/libraries/ShoeMetadata.sol": {
+			"keccak256": "0xaae691253ba788f094360f075b9f213e1a38eeacd688c4983fb357f593112d95",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2a9251eecbf7bf9fa335254c0b062d9e37887198a066b3d3ce64b006f531d9fe",
+				"dweb:/ipfs/QmfQV8JL3sN8X8ovCKmaoM6LpdYbkE7arrmJLurP7duFcd"
+			]
+		}
+	},
+	"version": 1
+}

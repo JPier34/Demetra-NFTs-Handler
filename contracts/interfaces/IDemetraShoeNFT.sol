@@ -16,7 +16,7 @@ interface IDemetraShoeNFT {
         LEGENDARY
     }
     
-    struct ShoeMetadata {
+    struct ShoeData {
         string shoeName;
         string materialOrigin;
         string craftmanship;
@@ -51,7 +51,7 @@ interface IDemetraShoeNFT {
     /**
      * @dev Ottieni metadati token
      */
-    function getTokenMetadata(uint256 tokenId) external view returns (ShoeMetadata memory);
+    function getTokenMetadata(uint256 tokenId) external view returns (ShoeData memory);
     
     /**
      * @dev Ottieni sconto utente
@@ -69,7 +69,7 @@ interface IDemetraShoeNFT {
     function getOwnerTokensWithMetadata(address owner) 
         external 
         view 
-        returns (uint256[] memory tokenIds, ShoeMetadata[] memory metadata);
+        returns (uint256[] memory tokenIds, ShoeData[] memory metadata);
     
     /**
      * @dev Statistiche collezione

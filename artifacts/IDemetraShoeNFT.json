@@ -49,152 +49,21 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
-			"getCollectionStats()": "5894bd51",
-			"getLoyaltyPoints(address)": "d04c9115",
-			"getOwnerTokensWithMetadata(address)": "11e904ad",
-			"getTokenMetadata(uint256)": "60316801",
-			"getUserDiscount(address)": "84fb3a9a",
-			"mint(uint256)": "a0712d68",
-			"ownerMint(address,uint256,uint8)": "41cffc41",
-			"pause()": "8456cb59",
-			"setMintPrice(uint256)": "f4a0a528",
-			"setRarityDiscount(uint8,uint256)": "eb004e5b",
-			"unpause()": "3f4ba83a",
-			"withdraw()": "3ccfd60b"
+			"balanceOf(address)": "70a08231",
+			"shoeMetadata(uint256)": "d7917f26",
+			"tokenOfOwnerByIndex(address,uint256)": "2f745c59"
 		}
 	},
 	"abi": [
 		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": true,
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				},
-				{
-					"indexed": true,
-					"internalType": "address",
-					"name": "winner",
-					"type": "address"
-				}
-			],
-			"name": "LotteryWinner",
-			"type": "event"
-		},
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": true,
-					"internalType": "address",
-					"name": "user",
-					"type": "address"
-				},
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "newPoints",
-					"type": "uint256"
-				}
-			],
-			"name": "LoyaltyPointsUpdated",
-			"type": "event"
-		},
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": true,
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				},
-				{
-					"indexed": false,
-					"internalType": "enum IDemetraShoeNFT.RarityLevel",
-					"name": "rarity",
-					"type": "uint8"
-				},
-				{
-					"indexed": false,
-					"internalType": "bool",
-					"name": "isLotteryWinner",
-					"type": "bool"
-				},
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "rarityScore",
-					"type": "uint256"
-				}
-			],
-			"name": "MetadataRevealed",
-			"type": "event"
-		},
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": true,
-					"internalType": "address",
-					"name": "to",
-					"type": "address"
-				},
-				{
-					"indexed": true,
-					"internalType": "uint256",
-					"name": "tokenId",
-					"type": "uint256"
-				},
-				{
-					"indexed": false,
-					"internalType": "uint256",
-					"name": "requestId",
-					"type": "uint256"
-				}
-			],
-			"name": "NFTMinted",
-			"type": "event"
-		},
-		{
-			"inputs": [],
-			"name": "getCollectionStats",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "totalMinted",
-					"type": "uint256"
-				},
-				{
-					"internalType": "uint256",
-					"name": "remainingSupply",
-					"type": "uint256"
-				},
-				{
-					"internalType": "uint256",
-					"name": "lotteryWinners",
-					"type": "uint256"
-				},
-				{
-					"internalType": "uint256",
-					"name": "currentPrice",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
 			"inputs": [
 				{
 					"internalType": "address",
-					"name": "user",
+					"name": "owner",
 					"type": "address"
 				}
 			],
-			"name": "getLoyaltyPoints",
+			"name": "balanceOf",
 			"outputs": [
 				{
 					"internalType": "uint256",
@@ -208,78 +77,12 @@
 		{
 			"inputs": [
 				{
-					"internalType": "address",
-					"name": "owner",
-					"type": "address"
-				}
-			],
-			"name": "getOwnerTokensWithMetadata",
-			"outputs": [
-				{
-					"internalType": "uint256[]",
-					"name": "tokenIds",
-					"type": "uint256[]"
-				},
-				{
-					"components": [
-						{
-							"internalType": "string",
-							"name": "shoeName",
-							"type": "string"
-						},
-						{
-							"internalType": "string",
-							"name": "materialOrigin",
-							"type": "string"
-						},
-						{
-							"internalType": "string",
-							"name": "craftmanship",
-							"type": "string"
-						},
-						{
-							"internalType": "string",
-							"name": "designHistory",
-							"type": "string"
-						},
-						{
-							"internalType": "enum IDemetraShoeNFT.RarityLevel",
-							"name": "rarity",
-							"type": "uint8"
-						},
-						{
-							"internalType": "bool",
-							"name": "isLotteryWinner",
-							"type": "bool"
-						},
-						{
-							"internalType": "uint256",
-							"name": "creationTimestamp",
-							"type": "uint256"
-						},
-						{
-							"internalType": "uint256",
-							"name": "rarityScore",
-							"type": "uint256"
-						}
-					],
-					"internalType": "struct IDemetraShoeNFT.ShoeMetadata[]",
-					"name": "metadata",
-					"type": "tuple[]"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
 					"internalType": "uint256",
 					"name": "tokenId",
 					"type": "uint256"
 				}
 			],
-			"name": "getTokenMetadata",
+			"name": "shoeMetadata",
 			"outputs": [
 				{
 					"components": [
@@ -304,7 +107,7 @@
 							"type": "string"
 						},
 						{
-							"internalType": "enum IDemetraShoeNFT.RarityLevel",
+							"internalType": "enum ShoeMetadata.RarityLevel",
 							"name": "rarity",
 							"type": "uint8"
 						},
@@ -324,7 +127,7 @@
 							"type": "uint256"
 						}
 					],
-					"internalType": "struct IDemetraShoeNFT.ShoeMetadata",
+					"internalType": "struct ShoeMetadata.ShoeData",
 					"name": "",
 					"type": "tuple"
 				}
@@ -336,11 +139,16 @@
 			"inputs": [
 				{
 					"internalType": "address",
-					"name": "user",
+					"name": "owner",
 					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "index",
+					"type": "uint256"
 				}
 			],
-			"name": "getUserDiscount",
+			"name": "tokenOfOwnerByIndex",
 			"outputs": [
 				{
 					"internalType": "uint256",
@@ -349,94 +157,6 @@
 				}
 			],
 			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "quantity",
-					"type": "uint256"
-				}
-			],
-			"name": "mint",
-			"outputs": [],
-			"stateMutability": "payable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "to",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "quantity",
-					"type": "uint256"
-				},
-				{
-					"internalType": "enum IDemetraShoeNFT.RarityLevel",
-					"name": "rarity",
-					"type": "uint8"
-				}
-			],
-			"name": "ownerMint",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "pause",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "newPrice",
-					"type": "uint256"
-				}
-			],
-			"name": "setMintPrice",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "enum IDemetraShoeNFT.RarityLevel",
-					"name": "rarity",
-					"type": "uint8"
-				},
-				{
-					"internalType": "uint256",
-					"name": "discount",
-					"type": "uint256"
-				}
-			],
-			"name": "setRarityDiscount",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "unpause",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "withdraw",
-			"outputs": [],
-			"stateMutability": "nonpayable",
 			"type": "function"
 		}
 	]
