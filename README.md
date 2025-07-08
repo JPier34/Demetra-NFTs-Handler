@@ -1,5 +1,13 @@
 # 🌱 Demetra Sustainable Shoes NFT
 
+[![Solidity](https://img.shields.io/badge/Solidity-0.8.30-blue?logo=solidity)](https://soliditylang.org/)
+[![Foundry](https://img.shields.io/badge/Foundry-tested-red?logo=ethereum)](https://book.getfoundry.sh/)
+[![Chainlink VRF](https://img.shields.io/badge/Chainlink-VRF_v2-blue?logo=chainlink)](https://docs.chain.link/vrf)
+[![OpenZeppelin](https://img.shields.io/badge/OpenZeppelin-5.0-blue?logo=openzeppelin)](https://openzeppelin.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Tests](https://img.shields.io/badge/Tests-40%2B-green?logo=ethereum)](./tests)
+[![Deployed](https://img.shields.io/badge/Deployed-Sepolia-green?logo=ethereum)](https://sepolia.etherscan.io/)
+
 > **Enterprise-grade NFT collection with Chainlink VRF integration and loyalty rewards system**
 
 A complete NFT ecosystem featuring randomized metadata generation, rarity-based rewards, and sustainable shoe-themed collectibles deployed on Ethereum Sepolia testnet.
