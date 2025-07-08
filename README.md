@@ -50,7 +50,7 @@ A complete NFT ecosystem featuring randomized metadata generation, rarity-based 
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
 │  DemetraShoeNFT │────│  Chainlink VRF   │    │  DemetraLoyalty │
 │                 │    │   Coordinator    │    │                 │
-│ • Minting       │    │                  │    │ • Point System │
+│ • Minting       │    │                  │    │ • Point System  │
 │ • Metadata      │────│ • Randomness     │    │ • Discounts     │
 │ • Transfers     │    │ • Tamper-proof   │    │ • Rewards       │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
