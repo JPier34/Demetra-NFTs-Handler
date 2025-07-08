@@ -112,6 +112,9 @@ PRIVATE_KEY=your_private_key
 ALCHEMY_API_URL=your_alchemy_url
 ETHERSCAN_API_KEY=your_etherscan_key
 VRF_SUBSCRIPTION_ID=your_chainlink_subscription
+VRF_COORDINATOR_SEPOLIA=your_vrf_coordinator_id
+VRF_KEY_HASH_SEPOLIA=your_sepolia_hash_key
+
 ```
 
 ## 📝 Smart Contracts
@@ -219,18 +222,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🔗 Links
 
-- **Documentation**: [Wiki](https://github.com/yourusername/demetra-nft/wiki)
-- **Bug Reports**: [Issues](https://github.com/yourusername/demetra-nft/issues)
-- **Feature Requests**: [Discussions](https://github.com/yourusername/demetra-nft/discussions)
-
-## 👥 Team
-
-- **Developer**: Your Name
-- **Advisor**: Blockchain Expert
-- **Designer**: NFT Artist
+- **Documentation**: [Wiki](https://github.com/JPier34/Demetra-NFTs-Handler/wiki)
+- **Bug Reports**: [Issues](https://github.com/JPier34/Demetra-NFTs-Handler/issues)
+- **Feature Requests**: [Discussions](https://github.com/JPier34/Demetra-NFTs-Handler/discussions)
 
 ---
 
 **⭐ If this project helped you, please consider giving it a star!**
 
-_Built with ❤️ for the sustainable future_
+_Built with ❤️ by JPier34 for a sustainable future_
