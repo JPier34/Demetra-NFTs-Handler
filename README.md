@@ -84,7 +84,7 @@ curl -L https://foundry.paradigm.xyz | bash
 foundryup
 
 # Clone repository
-git clone https://github.com/yourusername/demetra-nft
+git clone https://github.com/JPier34/Demetra-NFTs-Handler.git
 cd demetra-nft
 ```
 
