@@ -9,7 +9,7 @@ import {ShoeMetadata} from "../src/libraries/ShoeMetadata.sol";
 
 /**
  * @title SecurityTests
- * @dev Comprehensive security test suite per identificare vulnerabilità
+ * @dev Comprehensive security test suite
  */
 contract SecurityTests is Test {
     DemetraShoeNFT public nft;
@@ -26,7 +26,7 @@ contract SecurityTests is Test {
     uint64 public constant SUBSCRIPTION_ID = 1;
     uint256 public constant MINT_PRICE = 0.05 ether;
 
-    // Events per tracking attacks
+    // Events for attacks tracking
     event AttackAttempted(string attackType, bool successful);
 
     function setUp() public {
@@ -58,7 +58,7 @@ contract SecurityTests is Test {
         vm.deal(address(attackContract), 1 ether);
 
         // Attempt reentrancy attack
-        vm.expectRevert(); // Should fail due to ReentrancyGuard
+        vm.expectRevert();
         attackContract.attack();
 
         // Verify no extra NFTs were minted
@@ -74,7 +74,7 @@ contract SecurityTests is Test {
         vm.deal(address(attackContract), 1 ether);
 
         // Try to exploit refund mechanism
-        vm.expectRevert(); // Should fail
+        vm.expectRevert();
         attackContract.attack();
 
         vm.stopPrank();
@@ -148,7 +148,6 @@ contract SecurityTests is Test {
         vm.stopPrank();
         vm.startPrank(attacker);
 
-        // Try to hijack VRF request
         vm.expectRevert("Only owner can call this function");
         mockVRF.fulfillWithRarity(requestId, "legendary");
 
@@ -175,15 +174,15 @@ contract SecurityTests is Test {
     function testOverflowAttacks() public {
         vm.startPrank(attacker);
 
-        // Test quantità 0
+        // Test quantity 0
         vm.expectRevert("Invalid quantity");
         nft.mint{value: MINT_PRICE}(0);
 
-        // Test quantità troppo alta
+        // Test too high quantity
         vm.expectRevert("Invalid quantity");
         nft.mint{value: MINT_PRICE}(6);
 
-        // Test quantità massima
+        // Test maximum quantity
         vm.expectRevert("Invalid quantity");
         nft.mint{value: MINT_PRICE}(type(uint256).max);
 
@@ -247,66 +246,30 @@ contract SecurityTests is Test {
 
         uint256 attackerBalanceAfter = attacker.balance;
 
-        // Should only pay mint price, rest refunded
+        // Should only pay mint price, the rest should be refunded
         assertEq(attackerBalanceBefore - attackerBalanceAfter, MINT_PRICE);
 
         vm.stopPrank();
     }
 
-    // CORREZIONE: Test boundary semplificato
     function testMaxSupplyBoundary() public {
         uint256 maxSupply = nft.MAX_SUPPLY();
 
         vm.startPrank(owner);
 
-        // Test logica boundary senza dover mintare 9999 token
         vm.expectRevert("Max supply exceeded");
         nft.ownerMint(user1, maxSupply + 1, ShoeMetadata.RarityLevel.COMMON);
 
-        // Minta alcuni token per test
+        // Mint some tokens for test
         nft.ownerMint(user1, 50, ShoeMetadata.RarityLevel.COMMON);
         assertEq(nft.totalSupply(), 50);
 
         vm.stopPrank();
         vm.startPrank(user2);
 
-        // Verifica che mint pubblico funzioni
+        // Verify minting
         nft.mint{value: MINT_PRICE}(1);
         assertEq(nft.totalSupply(), 51);
-
-        vm.stopPrank();
-    }
-
-    function testMaxSupplyBoundaryWithDebug() public {
-        vm.startPrank(owner);
-
-        // Test semplificato che evita gas limit
-        nft.ownerMint(user1, 10, ShoeMetadata.RarityLevel.COMMON);
-
-        vm.stopPrank();
-        vm.startPrank(user2);
-
-        nft.mint{value: MINT_PRICE}(1);
-        assertEq(nft.totalSupply(), 11);
-
-        vm.stopPrank();
-    }
-
-    // Test alternativo con quantità ridotta per debugging
-    function testMaxSupplyBoundarySmall() public {
-        console2.log("=== TEST SMALL BOUNDARY ===");
-
-        vm.startPrank(owner);
-
-        // Invece di 9999, prova con quantità più piccola per debugging
-        nft.ownerMint(user1, 10, ShoeMetadata.RarityLevel.COMMON);
-        console2.log("Total supply after small owner mint:", nft.totalSupply());
-
-        vm.stopPrank();
-        vm.startPrank(user2);
-
-        nft.mint{value: MINT_PRICE}(1);
-        console2.log("Total supply after user2 mint:", nft.totalSupply());
 
         vm.stopPrank();
     }
@@ -484,7 +447,7 @@ contract SecurityTests is Test {
     function testGasExhaustionAttack() public {
         vm.startPrank(attacker);
 
-        // Try to mint with minimal gas (should fail gracefully)
+        // Try to mint with minimal gas (should fail)
         vm.expectRevert();
         nft.mint{gas: 50000, value: MINT_PRICE}(1);
 
@@ -523,7 +486,6 @@ contract SecurityTests is Test {
         string memory uri = nft.tokenURI(1);
         assertTrue(bytes(uri).length > 0);
 
-        // CORREZIONE: Messaggio corretto
         vm.expectRevert("Token not found");
         nft.tokenURI(999);
 

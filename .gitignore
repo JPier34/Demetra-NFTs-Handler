@@ -1,2 +1,92 @@
+# Foundry
+cache/
+out/
+broadcast/*/dry-run/
+
+# Environment variables
 .env
-.out
+.env.local
+.env.production
+.env.staging
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Dependencies
+lib/
+
+# Foundry artifacts
+artifacts/
+cache_hardhat/
+
+# Local development
+.secret
+.password
+
+# Coverage reports
+coverage/
+lcov.info
+
+# Gas reports
+gas-report.txt
+
+# Temporary files
+tmp/
+temp/
+
+# Backup files
+*.bak
+*.backup
+
+# Private keys and sensitive data
+private_keys/
+keystore/
+*.pem
+*.key
+
+# Deployment artifacts
+broadcast/*/dry-run/
+
+# Testing artifacts
+test-results/
+coverage.json
+
+# Documentation build
+docs/_build/
+docs/site/
+
+# Python (if using any Python tools)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Solidity compiler artifacts
+*.abi
+*.bin
+*.sol.js
+
+# Local configuration
+.foundry/

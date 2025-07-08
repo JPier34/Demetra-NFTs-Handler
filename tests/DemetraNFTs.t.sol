@@ -22,24 +22,24 @@ contract DemetraShoeNFTTest is Test {
     uint256 public constant MINT_PRICE = 0.05 ether;
 
     function setUp() public {
-        // Deploy contracts
+        // Deploys contracts
         vm.startPrank(owner);
 
         // Deploy Mock VRF
         mockVRF = new MockVRFCoordinator();
 
-        // Deploy NFT contract
+        // Deploys NFT contract
         nft = new DemetraShoeNFT(address(mockVRF), KEY_HASH, SUBSCRIPTION_ID);
 
-        // Deploy Loyalty contract
+        // Deploys Loyalty contract
         loyalty = new DemetraLoyalty(address(nft));
 
-        // Connect contracts
+        // Connects contracts
         nft.setLoyaltyContract(address(loyalty));
 
         vm.stopPrank();
 
-        // Give users some ETH
+        // Gives users some ETH
         vm.deal(user1, 10 ether);
         vm.deal(user2, 10 ether);
     }
@@ -55,14 +55,14 @@ contract DemetraShoeNFTTest is Test {
     function testMintBasic() public {
         vm.startPrank(user1);
 
-        // Check initial state
+        // Checks initial state
         assertEq(nft.totalSupply(), 0);
         assertEq(nft.balanceOf(user1), 0);
 
-        // Mint NFT
+        // Mints NFT
         nft.mint{value: MINT_PRICE}(1);
 
-        // Check state after mint
+        // Checks state after mint
         assertEq(nft.totalSupply(), 1);
         assertEq(nft.balanceOf(user1), 1);
         assertEq(nft.walletMints(user1), 1);
@@ -83,11 +83,11 @@ contract DemetraShoeNFTTest is Test {
     function testMintExceedsWalletLimit() public {
         vm.startPrank(user1);
 
-        // Mint max allowed (5)
+        // Mints max allowed (5)
         nft.mint{value: MINT_PRICE * 5}(5);
         assertEq(nft.walletMints(user1), 5);
 
-        // Try to mint one more (should fail)
+        // Tries to mint one more (should fail)
         vm.expectRevert("Wallet limit exceeded");
         nft.mint{value: MINT_PRICE}(1);
 
@@ -109,17 +109,17 @@ contract DemetraShoeNFTTest is Test {
     function testVRFIntegration() public {
         vm.startPrank(user1);
 
-        // Mint NFT (triggers VRF request)
+        // Mints NFT (triggers VRF request)
         nft.mint{value: MINT_PRICE}(1);
         vm.stopPrank();
 
         vm.startPrank(owner);
-        // Simulate VRF response with RARE rarity
+        // Simulates VRF response with RARE rarity
         mockVRF.fulfillWithRarity(1, "rare");
         vm.stopPrank();
 
         vm.startPrank(user1);
-        // Check metadata was generated
+        // Checks metadata was generated
         ShoeMetadata.ShoeData memory metadata = nft.getTokenMetadata(1);
         assertEq(
             uint256(metadata.rarity),
@@ -135,19 +135,19 @@ contract DemetraShoeNFTTest is Test {
     function testLotteryWinner() public {
         vm.startPrank(user1);
 
-        // Mint NFT
+        // Mints NFT
         nft.mint{value: MINT_PRICE}(1);
 
-        // Check no lottery winners initially
+        // Checks no lottery winners initially
         assertEq(nft.totalLotteryWinners(), 0);
 
-        // Simulate VRF with lottery win
+        // Simulates VRF with lottery win
         mockVRF.fulfillWithLotteryWin(1);
 
-        // Check lottery winner was registered
+        // Checks lottery winner was registered
         assertEq(nft.totalLotteryWinners(), 1);
 
-        // Check metadata shows lottery winner
+        // Checks metadata shows lottery winner
         ShoeMetadata.ShoeData memory metadata = nft.getTokenMetadata(1);
         assertTrue(metadata.isLotteryWinner);
 
@@ -160,7 +160,7 @@ contract DemetraShoeNFTTest is Test {
         // Initial loyalty points should be 0
         assertEq(loyalty.getLoyaltyPoints(user1), 0);
 
-        // Mint and fulfill VRF
+        // Mints and fulfill VRF
         nft.mint{value: MINT_PRICE}(1);
         vm.stopPrank();
 
@@ -169,7 +169,7 @@ contract DemetraShoeNFTTest is Test {
         vm.stopPrank();
 
         vm.startPrank(user1);
-        // Check loyalty points were added
+        // Checks loyalty points were added
         assertGt(loyalty.getLoyaltyPoints(user1), 0);
 
         vm.stopPrank();
@@ -202,14 +202,14 @@ contract DemetraShoeNFTTest is Test {
     function testOwnerMint() public {
         vm.startPrank(owner);
 
-        // Owner mint with predetermined rarity
+        // Owner mints with predetermined rarity
         nft.ownerMint(user1, 1, ShoeMetadata.RarityLevel.LEGENDARY);
 
-        // Check NFT was minted
+        // Checks NFT was minted
         assertEq(nft.balanceOf(user1), 1);
         assertEq(nft.totalSupply(), 1);
 
-        // Check metadata
+        // Checks metadata
         ShoeMetadata.ShoeData memory metadata = nft.getTokenMetadata(1);
         assertEq(
             uint256(metadata.rarity),
@@ -223,7 +223,7 @@ contract DemetraShoeNFTTest is Test {
     function testPauseUnpause() public {
         vm.startPrank(owner);
 
-        // Pause contract
+        // Pauses contract
         nft.pause();
 
         vm.stopPrank();
@@ -236,7 +236,7 @@ contract DemetraShoeNFTTest is Test {
         vm.stopPrank();
         vm.startPrank(owner);
 
-        // Unpause
+        // Unpauses
         nft.unpause();
 
         vm.stopPrank();
@@ -252,7 +252,7 @@ contract DemetraShoeNFTTest is Test {
     function testAdminFunctions() public {
         vm.startPrank(owner);
 
-        // Test price change
+        // Tests price change
         nft.setMintPrice(0.1 ether);
         assertEq(nft.mintPrice(), 0.1 ether);
 
@@ -269,7 +269,7 @@ contract DemetraShoeNFTTest is Test {
     function testWithdraw() public {
         vm.startPrank(user1);
 
-        // Mint some NFTs to generate revenue
+        // Mints some NFTs to generate revenue
         nft.mint{value: MINT_PRICE * 3}(3);
 
         vm.stopPrank();
@@ -278,10 +278,10 @@ contract DemetraShoeNFTTest is Test {
         uint256 initialBalance = owner.balance;
         uint256 contractBalance = address(nft).balance;
 
-        // Withdraw funds
+        // Withdraws funds
         nft.withdraw();
 
-        // Check funds were transferred
+        // Checks funds were transferred
         assertEq(address(nft).balance, 0);
         assertEq(owner.balance, initialBalance + contractBalance);
 
@@ -291,7 +291,7 @@ contract DemetraShoeNFTTest is Test {
     function testCollectionStats() public {
         vm.startPrank(user1);
 
-        // Check initial stats
+        // Checks initial stats
         (
             uint256 totalMinted,
             uint256 remainingSupply,
@@ -303,7 +303,7 @@ contract DemetraShoeNFTTest is Test {
         assertEq(lotteryWinners, 0);
         assertEq(currentPrice, MINT_PRICE);
 
-        // Mint and fulfill
+        // Mints and fulfills
         nft.mint{value: MINT_PRICE * 2}(2);
         vm.stopPrank();
 
@@ -313,7 +313,7 @@ contract DemetraShoeNFTTest is Test {
         vm.stopPrank();
 
         vm.startPrank(owner);
-        // Check updated stats
+        // Checks updated stats
         (totalMinted, remainingSupply, lotteryWinners, currentPrice) = nft
             .getCollectionStats();
         assertEq(totalMinted, 2);
@@ -325,12 +325,6 @@ contract DemetraShoeNFTTest is Test {
 
     function testMaxSupply() public {
         vm.startPrank(owner);
-
-        // Set a very low max supply for testing
-        // Note: This would require modifying the contract to make MAX_SUPPLY mutable
-        // For now, we test the logic with owner mints approaching the limit
-
-        // Mint close to max supply (this is just a conceptual test)
         vm.expectRevert("Max supply exceeded");
         nft.ownerMint(user1, 10001, ShoeMetadata.RarityLevel.COMMON);
 
@@ -347,7 +341,7 @@ contract DemetraShoeNFTTest is Test {
 
         console2.log("Gas used for mint:", gasUsed);
 
-        // Assert reasonable gas usage (adjust based on actual measurements)
+        // Asserts reasonable gas usage (adjust based on actual measurements)
         assertLt(gasUsed, 300000); // Should be less than 300k gas
 
         vm.stopPrank();

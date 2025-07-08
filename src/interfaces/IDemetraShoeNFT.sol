@@ -3,19 +3,18 @@ pragma solidity ^0.8.19;
 
 /**
  * @title IDemetraShoeNFT
- * @dev Interfaccia pubblica per il contratto DemetraShoeNFT
+ * @dev Public interface for DemetraShoeNFT contract
  */
 interface IDemetraShoeNFT {
-    
     // ============ ENUMS & STRUCTS ============
-    
+
     enum RarityLevel {
         COMMON,
-        RARE, 
+        RARE,
         EPIC,
         LEGENDARY
     }
-    
+
     struct ShoeData {
         string shoeName;
         string materialOrigin;
@@ -26,69 +25,90 @@ interface IDemetraShoeNFT {
         uint256 creationTimestamp;
         uint256 rarityScore;
     }
-    
+
     // ============ EVENTS ============
-    
-    event NFTMinted(address indexed to, uint256 indexed tokenId, uint256 requestId);
-    event MetadataRevealed(uint256 indexed tokenId, RarityLevel rarity, bool isLotteryWinner, uint256 rarityScore);
+
+    event NFTMinted(
+        address indexed to,
+        uint256 indexed tokenId,
+        uint256 requestId
+    );
+    event MetadataRevealed(
+        uint256 indexed tokenId,
+        RarityLevel rarity,
+        bool isLotteryWinner,
+        uint256 rarityScore
+    );
     event LotteryWinner(uint256 indexed tokenId, address indexed winner);
     event LoyaltyPointsUpdated(address indexed user, uint256 newPoints);
-    
+
     // ============ MINT FUNCTIONS ============
-    
+
     /**
-     * @dev Mint NFT pubblico
+     * @dev Mint public NFT
      */
     function mint(uint256 quantity) external payable;
-    
+
     /**
-     * @dev Mint riservato al proprietario
+     * @dev Mint (only for the owner)
      */
-    function ownerMint(address to, uint256 quantity, RarityLevel rarity) external;
-    
+    function ownerMint(
+        address to,
+        uint256 quantity,
+        RarityLevel rarity
+    ) external;
+
     // ============ VIEW FUNCTIONS ============
-    
+
     /**
-     * @dev Ottieni metadati token
+     * @dev Get token metadata
      */
-    function getTokenMetadata(uint256 tokenId) external view returns (ShoeData memory);
-    
+    function getTokenMetadata(
+        uint256 tokenId
+    ) external view returns (ShoeData memory);
+
     /**
-     * @dev Ottieni sconto utente
+     * @dev Get user discount
      */
     function getUserDiscount(address user) external view returns (uint256);
-    
+
     /**
-     * @dev Ottieni punti fedeltà
+     * @dev Get fidelity points
      */
     function getLoyaltyPoints(address user) external view returns (uint256);
-    
+
     /**
-     * @dev Ottieni token e metadati del proprietario
+     * @dev Get token and metadata from owner
      */
-    function getOwnerTokensWithMetadata(address owner) 
-        external 
-        view 
+    function getOwnerTokensWithMetadata(
+        address owner
+    )
+        external
+        view
         returns (uint256[] memory tokenIds, ShoeData[] memory metadata);
-    
+
     /**
-     * @dev Statistiche collezione
+     * @dev Collection stats
      */
-    function getCollectionStats() 
-        external 
-        view 
+    function getCollectionStats()
+        external
+        view
         returns (
             uint256 totalMinted,
-            uint256 remainingSupply, 
+            uint256 remainingSupply,
             uint256 lotteryWinners,
             uint256 currentPrice
         );
-    
+
     // ============ ADMIN FUNCTIONS ============
-    
+
     function setMintPrice(uint256 newPrice) external;
+
     function setRarityDiscount(RarityLevel rarity, uint256 discount) external;
+
     function pause() external;
+
     function unpause() external;
+
     function withdraw() external;
 }

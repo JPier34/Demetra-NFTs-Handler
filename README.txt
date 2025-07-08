@@ -1,28 +1,218 @@
-REMIX DEFAULT WORKSPACE
+# 🌱 Demetra Sustainable Shoes NFT
 
-Remix default workspace is present when:
-i. Remix loads for the very first time 
-ii. A new workspace is created with 'Default' template
-iii. There are no files existing in the File Explorer
+> **Enterprise-grade NFT collection with Chainlink VRF integration and loyalty rewards system**
 
-This workspace contains 3 directories:
+A complete NFT ecosystem featuring randomized metadata generation, rarity-based rewards, and sustainable shoe-themed collectibles deployed on Ethereum Sepolia testnet.
 
-1. 'contracts': Holds three contracts with increasing levels of complexity.
-2. 'scripts': Contains four typescript files to deploy a contract. It is explained below.
-3. 'tests': Contains one Solidity test file for 'Ballot' contract & one JS test file for 'Storage' contract.
+## 🚀 Live Demo
 
-SCRIPTS
+- **NFT Contract**: [0x16d3B8Dd88F59B469b4757BaB6AA16304f3Aa69a](https://sepolia.etherscan.io/address/0x16d3b8dd88f59b469b4757bab6aa16304f3aa69a)
+- **Loyalty Contract**: [0x6AA812AD0766D9Af34BF705AaAF4c1B24345f135](https://sepolia.etherscan.io/address/0x6aa812ad0766d9af34bf705aaaf4c1b24345f135)
+- **Sample Mint Transaction**: [0xd413c7...44196](https://sepolia.etherscan.io/tx/0xc646642aa98b232554d794cb1ef721e20931005fa339140214f1553cb0cb9956)
+- **Network**: Ethereum Sepolia Testnet
 
-The 'scripts' folder has four typescript files which help to deploy the 'Storage' contract using 'web3.js' and 'ethers.js' libraries.
+## ✨ Features
 
-For the deployment of any other contract, just update the contract name from 'Storage' to the desired contract and provide constructor arguments accordingly 
-in the file `deploy_with_ethers.ts` or  `deploy_with_web3.ts`
+### 🎨 Core NFT Functionality
+- **ERC721 Standard**: Full compatibility with OpenSea, Blur, and all major marketplaces
+- **Dynamic Metadata**: Rich, sustainable shoe-themed attributes
+- **Rarity System**: 5 levels (Common, Uncommon, Rare, Epic, Legendary)
+- **Verifiable Randomness**: Chainlink VRF v2 integration for tamper-proof randomization
 
-In the 'tests' folder there is a script containing Mocha-Chai unit tests for 'Storage' contract.
+### 🎁 Advanced Features
+- **Loyalty Rewards**: Automatic point accumulation based on NFT rarity
+- **Discount System**: Up to 50% discounts for premium holders
+- **Lottery Mechanism**: 1% chance for special rewards on each mint
+- **Pause/Emergency Controls**: Admin safety mechanisms
 
-To run a script, right click on file name in the file explorer and click 'Run'. Remember, Solidity file must already be compiled.
-Output from script will appear in remix terminal.
+### 🛡️ Security Features
+- **Access Control**: Owner-only administrative functions
+- **Reentrancy Protection**: Guards against common attack vectors
+- **Overflow Protection**: Safe arithmetic operations
+- **VRF Manipulation Prevention**: Secure randomness generation
 
-Please note, require/import is supported in a limited manner for Remix supported modules.
-For now, modules supported by Remix are ethers, web3, swarmgw, chai, multihashes, remix and hardhat only for hardhat.ethers object/plugin.
-For unsupported modules, an error like this will be thrown: '<module_name> module require is not supported by Remix IDE' will be shown.
+## 📊 Collection Stats
+
+| Parameter | Value |
+|-----------|--------|
+| **Max Supply** | 10,000 NFTs |
+| **Mint Price** | 0.05 ETH |
+| **Max Per Wallet** | 5 NFTs |
+| **Max Per Transaction** | 5 NFTs |
+| **Lottery Chance** | 1% per mint |
+
+## 🏗️ Architecture
+
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│  DemetraShoeNFT │────│  Chainlink VRF   │    │  DemetraLoyalty │
+│                 │    │   Coordinator    │    │                 │
+│ • Minting       │    │                  │    │ • Point System  │
+│ • Metadata      │────│ • Randomness     │    │ • Discounts     │
+│ • Transfers     │    │ • Tamper-proof   │    │ • Rewards       │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+```
+
+## 🔧 Technology Stack
+
+- **Solidity 0.8.19+**: Smart contract development
+- **Foundry**: Testing and deployment framework
+- **Chainlink VRF v2**: Verifiable random function
+- **OpenZeppelin**: Security and standard implementations
+- **Etherscan**: Contract verification and transparency
+
+## 🎯 Rarity Distribution
+
+| Rarity | Probability | Discount |
+|--------|-------------|----------|
+| **Common** | 49% | 5% |
+| **Uncommon** | 30% | 10% |
+| **Rare** | 15% | 15% |
+| **Epic** | 5% | 25% |
+| **Legendary** | 1% | 35% |
+
+## 🚀 Quick Start
+
+### Prerequisites
+```bash
+# Install Foundry
+curl -L https://foundry.paradigm.xyz | bash
+foundryup
+
+# Clone repository
+git clone https://github.com/JPier34/Demetra-NFTs-Handler.git
+cd Demetra-NFTs-Handler
+```
+
+### Installation
+```bash
+# Install dependencies
+forge install
+
+# Run tests
+forge test
+
+# Deploy to Sepolia
+forge script script/Deploy.s.sol --rpc-url sepolia --broadcast --verify
+```
+
+### Environment Setup
+```bash
+# Create .env file
+cp .env.example .env
+
+# Add your keys
+PRIVATE_KEY=your_private_key
+ALCHEMY_API_URL=your_alchemy_url
+ETHERSCAN_API_KEY=your_etherscan_key
+VRF_SUBSCRIPTION_ID=your_chainlink_subscription
+VRF_COORDINATOR_SEPOLIA=your_chainlink_coordinator_id
+VRF_KEY_HASH_SEPOLIA=your_sepolia_key_hash
+```
+
+## 📝 Smart Contracts
+
+### DemetraShoeNFT.sol
+Main NFT contract with minting, metadata, and VRF integration.
+
+**Key Functions:**
+- `mint(uint256 quantity)`: Public minting with payment
+- `ownerMint(address to, uint256 quantity, RarityLevel rarity)`: Admin minting
+- `getTokenMetadata(uint256 tokenId)`: Retrieve NFT attributes
+- `getCollectionStats()`: Collection statistics
+
+### DemetraLoyalty.sol
+Loyalty rewards system for NFT holders.
+
+**Key Functions:**
+- `getLoyaltyPoints(address user)`: Get user's point balance
+- `getUserDiscount(address user)`: Calculate discount percentage
+- `addLoyaltyPoints(address user, uint256 points)`: Add points (NFT contract only)
+
+### ShoeMetadata.sol
+Library for generating dynamic metadata based on rarity.
+
+## 🧪 Testing
+
+The project includes comprehensive testing with 35+ test cases covering:
+
+- **Unit Tests**: Individual function testing
+- **Integration Tests**: Contract interaction testing
+- **Security Tests**: Attack vector prevention
+- **Gas Optimization**: Efficiency testing
+
+```bash
+# Run all tests
+forge test
+
+# Run specific test category
+forge test --match-test testSecurity
+
+# Run with verbosity
+forge test -vvv
+
+# Generate coverage report
+forge coverage
+```
+
+## 🛡️ Security Auditing
+
+### Automated Testing
+- **40+ test cases** covering all major functions
+- **Security-focused tests** for common vulnerabilities
+- **Reentrancy protection** testing
+- **Access control** verification
+
+### Manual Review
+- **Overflow/underflow** protection
+- **VRF manipulation** prevention
+- **Access control** mechanisms
+- **Emergency procedures**
+
+## 📈 Gas Optimization
+
+| Function | Gas Usage | Optimization |
+|----------|-----------|--------------|
+| `mint(1)` | ~275k gas | Optimized loops |
+| `ownerMint(1)` | ~512k gas | Batch processing |
+| `transfer` | ~85k gas | Standard ERC721 |
+
+## 🎨 Metadata Examples
+
+### Legendary NFT
+```json
+{
+  "shoeName": "Aurora Sustainability",
+  "materialOrigin": "Bio-engineered Spider Silk Protein Fiber",
+  "craftingMethod": "Hand-stitched by Master Artisan with 30+ years experience",
+  "sustainability": "Inspired by ancient Italian shoemaking traditions dating back to Renaissance",
+  "rarity": "LEGENDARY",
+  "isLotteryWinner": false,
+  "rarityScore": 122,
+  "creationTimestamp": 1734567890
+}
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔗 Links
+
+- **Documentation**: [Wiki](https://github.com/JPier34/Demetra-NFTs-Handler/wiki)
+- **Bug Reports**: [Issues](https://github.com/JPier34/Demetra-NFTs-Handler/issues)
+- **Pull Requests**: [Discussions](https://github.com/JPier34/Demetra-NFTs-Handler/pulls)
+
+---
+
+**⭐ If this project helped you, please consider giving it a star!**
+
+*Built with ❤️ by JPier34 for a sustainable future*

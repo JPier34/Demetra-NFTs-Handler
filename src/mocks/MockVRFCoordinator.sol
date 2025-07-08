@@ -3,8 +3,8 @@ pragma solidity ^0.8.19;
 
 /**
  * @title MockVRFCoordinator
- * @dev Mock del Chainlink VRF Coordinator per testing in Remix
- * @dev Simula il comportamento del VRF senza dover aspettare Chainlink
+ * @dev Chainlink VRF Coordinator Mock
+ * @dev Simulate VRF behaviour without waiting for Chainlink
  */
 contract MockVRFCoordinator {
     // ============ STATE VARIABLES ============
@@ -15,7 +15,7 @@ contract MockVRFCoordinator {
 
     address public owner;
 
-    // Eventi per simulare Chainlink VRF
+    // Events to simulate Chainlink VRF
     event RandomWordsRequested(
         bytes32 indexed keyHash,
         uint256 requestId,
@@ -52,7 +52,7 @@ contract MockVRFCoordinator {
     // ============ MOCK FUNCTIONS ============
 
     /**
-     * @dev Simula requestRandomWords di Chainlink VRF
+     * @dev Simulate requestRandomWords from Chainlink VRF
      */
     function requestRandomWords(
         bytes32 keyHash,
@@ -80,9 +80,9 @@ contract MockVRFCoordinator {
     }
 
     /**
-     * @dev Simula manualmente il callback VRF
-     * @param requestId ID della richiesta da fulfillare
-     * @param randomWords Array di numeri casuali (forniti manualmente per test)
+     * @dev Simulate manually for callback VRF
+     * @param requestId ID from request to fulfill
+     * @param randomWords Random numbers by array (manually given for test)
      */
     function fulfillRandomWords(
         uint256 requestId,
@@ -112,9 +112,9 @@ contract MockVRFCoordinator {
     }
 
     /**
-     * @dev Genera automaticamente numeri casuali per test rapidi
-     * @param requestId ID della richiesta
-     * @param seed Seed per generazione pseudo-casuale
+     * @dev Automatically generates random numbers for quick tests
+     * @param requestId ID from request
+     * @param seed Seed to generate pseudo-random
      */
     function autoFulfillRandomWords(uint256 requestId, uint256 seed) external {
         require(s_consumers[requestId] != address(0), "Invalid request ID");
@@ -146,7 +146,7 @@ contract MockVRFCoordinator {
     // ============ HELPER FUNCTIONS PER TEST ============
 
     /**
-     * @dev Simula different rarity outcomes per testing
+     * @dev Simulate different rarity outcomes for testing
      */
     function fulfillWithRarity(
         uint256 requestId,
@@ -190,7 +190,7 @@ contract MockVRFCoordinator {
     }
 
     /**
-     * @dev Forza lottery winner per testing
+     * @dev Force lottery winner for testing
      */
     function fulfillWithLotteryWin(uint256 requestId) external {
         require(s_consumers[requestId] != address(0), "Invalid request ID");

@@ -14,6 +14,7 @@ import "./DemetraLoyalty.sol";
 
 /**
  * @title DemetraShoeNFT - Core NFT Contract
+ * @dev Sustainable shoe-themed NFT collection with Chainlink VRF integration
  */
 contract DemetraShoeNFT is
     ERC721,
@@ -25,6 +26,9 @@ contract DemetraShoeNFT is
 {
     // ============ STRUCTS ============
 
+    /**
+     * @dev VRF request data structure
+     */
     struct VRFRequest {
         address requester;
         uint256 tokenId;
@@ -75,6 +79,12 @@ contract DemetraShoeNFT is
 
     // ============ CONSTRUCTOR ============
 
+    /**
+     * @dev Initialize the NFT contract with Chainlink VRF configuration
+     * @param vrfCoordinator Address of the Chainlink VRF Coordinator
+     * @param keyHash Key hash for VRF requests
+     * @param subscriptionId Chainlink subscription ID
+     */
     constructor(
         address vrfCoordinator,
         bytes32 keyHash,
@@ -91,6 +101,10 @@ contract DemetraShoeNFT is
 
     // ============ MINT FUNCTIONS ============
 
+    /**
+     * @dev Public minting function with payment and VRF randomness
+     * @param quantity Number of NFTs to mint (1-5)
+     */
     function mint(
         uint256 quantity
     ) external payable nonReentrant whenNotPaused {
@@ -132,6 +146,12 @@ contract DemetraShoeNFT is
         }
     }
 
+    /**
+     * @dev Owner-only minting function with predetermined rarity
+     * @param to Address to mint NFTs to
+     * @param quantity Number of NFTs to mint
+     * @param rarity Predetermined rarity level
+     */
     function ownerMint(
         address to,
         uint256 quantity,
@@ -162,6 +182,11 @@ contract DemetraShoeNFT is
 
     // ============ VRF CALLBACK ============
 
+    /**
+     * @dev Chainlink VRF callback function to process random numbers
+     * @param requestId The VRF request ID
+     * @param randomWords Array of random numbers from Chainlink
+     */
     function fulfillRandomWords(
         uint256 requestId,
         uint256[] memory randomWords
@@ -209,6 +234,11 @@ contract DemetraShoeNFT is
 
     // ============ VIEW FUNCTIONS ============
 
+    /**
+     * @dev Get complete metadata for a specific token
+     * @param tokenId The token ID to query
+     * @return ShoeData struct containing all metadata
+     */
     function getTokenMetadata(
         uint256 tokenId
     ) external view returns (ShoeMetadata.ShoeData memory) {
@@ -216,6 +246,13 @@ contract DemetraShoeNFT is
         return shoeMetadata[tokenId];
     }
 
+    /**
+     * @dev Get collection statistics
+     * @return totalMinted Total number of minted NFTs
+     * @return remainingSupply Number of NFTs remaining to mint
+     * @return lotteryWinners Total number of lottery winners
+     * @return currentPrice Current mint price
+     */
     function getCollectionStats()
         external
         view
@@ -236,22 +273,39 @@ contract DemetraShoeNFT is
 
     // ============ ADMIN FUNCTIONS ============
 
+    /**
+     * @dev Set the loyalty contract address
+     * @param _loyaltyContract Address of the loyalty contract
+     */
     function setLoyaltyContract(address _loyaltyContract) external onlyOwner {
         loyaltyContract = DemetraLoyalty(_loyaltyContract);
     }
 
+    /**
+     * @dev Set the mint price
+     * @param newPrice New mint price in wei
+     */
     function setMintPrice(uint256 newPrice) external onlyOwner {
         mintPrice = newPrice;
     }
 
+    /**
+     * @dev Pause all minting operations
+     */
     function pause() external onlyOwner {
         _pause();
     }
 
+    /**
+     * @dev Unpause all minting operations
+     */
     function unpause() external onlyOwner {
         _unpause();
     }
 
+    /**
+     * @dev Withdraw contract balance to owner
+     */
     function withdraw() external onlyOwner {
         uint256 balance = address(this).balance;
         require(balance > 0, "No funds");
@@ -260,6 +314,9 @@ contract DemetraShoeNFT is
 
     // ============ REQUIRED OVERRIDES ============
 
+    /**
+     * @dev Override required by Solidity for multiple inheritance
+     */
     function _update(
         address to,
         uint256 tokenId,
@@ -273,6 +330,9 @@ contract DemetraShoeNFT is
         return super._update(to, tokenId, auth);
     }
 
+    /**
+     * @dev Override required by Solidity for multiple inheritance
+     */
     function _increaseBalance(
         address account,
         uint128 value
@@ -280,12 +340,20 @@ contract DemetraShoeNFT is
         super._increaseBalance(account, value);
     }
 
+    /**
+     * @dev Override required by Solidity for multiple inheritance
+     */
     function supportsInterface(
         bytes4 interfaceId
     ) public view override(ERC721, ERC721Enumerable) returns (bool) {
         return super.supportsInterface(interfaceId);
     }
 
+    /**
+     * @dev Generate token URI for marketplace compatibility
+     * @param tokenId The token ID to generate URI for
+     * @return Token URI string
+     */
     function tokenURI(
         uint256 tokenId
     ) public view override returns (string memory) {
